@@ -35,7 +35,7 @@ void		check_zombie(void)
 	}
 }
 
-int			execute_builtin_command(t_process *proc)
+int			execute_builtin_command(t_process *proc, int out_fd)
 {
 	if (proc->type == COMMAND_EXIT)
 		exit_shell(proc);
@@ -57,6 +57,8 @@ int			execute_builtin_command(t_process *proc)
 		setenv_(proc);
 	else if (proc->type == COMMAND_UNSETENV)
 		unset_(proc);
+    else if (proc->type == COMMAND_ECHO)
+        echo_(proc, out_fd);
 	else
 		return (0);
 	return (1);

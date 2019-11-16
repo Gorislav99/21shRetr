@@ -31,6 +31,7 @@
 # define COMMAND_ENV 10
 # define COMMAND_SETENV 11
 # define COMMAND_UNSETENV 12
+# define COMMAND_ECHO 13
 
 # include "stdlib.h"
 

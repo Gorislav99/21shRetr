@@ -158,7 +158,8 @@ void					shell_cleaner(void);
 int						shell_launch_job(t_job *job);
 int						shell_launch_process(t_job *job,
 		t_process *proc, int in_fd, int out_fd);
-int						execute_builtin_command(t_process *proc);
+int			execute_builtin_command(t_process *proc, int out_fd);
+
 int						set_process_status(int pid, int status);
 int						print_job_status(int id);
 void					built_init(void);
@@ -232,6 +233,7 @@ char					*str_join_her(char *s1, char *s2);
 /*
 ** 				ENV
 */
+int			echo_(t_process *proc, int out_fd);
 
 int						print_env(t_process *proc);
 int						setenv_(t_process *proc);

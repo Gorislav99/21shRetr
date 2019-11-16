@@ -55,6 +55,50 @@ int			echo(t_process *proc)
 	return (1);
 }
 
+int			echo_(t_process *proc, int out_fd)
+{
+	int i;
+	int	n;
+
+	i = 1;
+	n = 0;
+	if (proc->query[1] == NULL)
+	{
+		write(out_fd, "\n", 1);
+		return (1);
+	}
+	while (proc->query[i] &&
+	(!ft_strcmp(proc->query[i], "-n")
+	|| !ft_strcmp(proc->query[i], "-e")))
+		n = !ft_strcmp(proc->query[i++], "-n") ? 1 : 0;
+	if (proc->query[i] &&
+	!ft_strcmp(proc->query[i], "-"))
+		++i;
+	if (!proc->query[i] && n)
+		return (1);
+	while (proc->query[i])
+	{
+		write(out_fd, proc->query[i], ft_strlen(proc->query[i]));
+		proc->query[++i] ? write(out_fd, " ", 1) : 0;
+	}
+	write(out_fd, "\n", 1);
+	return (1);
+//    int		i;
+//
+//    i = 1;
+//    out_fd = 1;
+//    string_var_parser(proc->query);
+//    while (proc->query[i] != 0)
+//    {
+//        ft_printf("%s ", proc->query[i]);
+//        i++;
+//    }
+//    ft_printf("\n");
+//    return (1);
+
+
+}
+
 void		shell_cleaner(void)
 {
 	int		i;

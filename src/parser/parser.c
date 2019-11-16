@@ -38,7 +38,8 @@ char	**parser(t_history_session **h_session, char **env, int lenght_hello)
 	mode = 0;
 	while (1)
 	{
-		line = input(h_session, lenght_hello, mode);
+//		line = input(h_session, lenght_hello, mode);
+		line = read_ln();
 		if (parse_error(line))
 		{
 			free(line);
